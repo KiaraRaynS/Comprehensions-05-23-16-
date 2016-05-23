@@ -2,7 +2,7 @@
 
 def read_water_data():
     with open("water_data.txt") as opened_file:
-        water_data = opened_file
+        water_data = opened_file.split(',')
         return water_data
 
 
@@ -14,11 +14,14 @@ def remove_vowels():
 
 def temp_string_to_float():
     water_data = read_water_data()
+    water_temps = [for item in water_data if index / 4 True]
+    water_temps_float =
+    print(water_temps_float)
 
 
 def water_temperatures():
     water_data = read_water_data()
-    fahrenheit_temperature = [temperature * 32 + 32 for temperature in water_data if index[4::5]]
+    fahrenheit_temperature = [temperature * 32 + 32 for temperature in water_data if index[4::6]]
     print(fahrenheit_temprature)
 
 
