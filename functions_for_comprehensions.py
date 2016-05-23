@@ -1,3 +1,4 @@
+from enum import Enum
 
 
 def read_water_data():
@@ -46,10 +47,25 @@ def water_dates_height_dictionairy():
     print(dates_height_dict)
 
 
-def average_grades():
-    complete_dict = {'Gale': {'Homework 1': 88, 'Homework 2': 76},
-                        'Jordan': {'Homework 1': 92, 'Homework 2': 87},
-                        'Peyton': {'Homework 1': 84, 'Homework 2': 77},
-                        'River': {'Homework 1': 85, 'Homework 2': 91}
-    }
+class DayOfWeek(Enum):
+    Sunday = 0
+    Monday = 1
+    Tuesday = 2
+    Wednesday = 3
+    Thursday = 4
+    Friday = 5
+    Saturday = 6
+
+
+def get_day_of_week(year, month, day):
+    month_table = [0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4]
+    year -= 1 if month < 3 else 0
+    return DayOfWeek(int((year+year / 4 - year / 100 + year / 400 + month_table[month - 1] + day) % 7))
+
+
+def average_height():
+    water_data = read_water_data()
+    dates_list = [item[5] for item in water_data]
+
+
 
