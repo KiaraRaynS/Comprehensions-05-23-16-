@@ -2,29 +2,41 @@
 
 def read_water_data():
     with open("water_data.txt") as opened_file:
-        water_data = opened_file.split(',')
-        return water_data
+        water_data = opened_file.readlines()
+        return [list.split(',') for list in water_data]
 
 
 def remove_vowels():
     letter_list = list("List Comprehensions are the Greatest!")
-    end_list = [for letter in letter_list if letter != ('a', 'e', 'i', 'o', 'u')]
+    end_list = [letter for letter in letter_list if letter not in ('a', 'e', 'i', 'o', 'u')]
     print(end_list)
 
 
 def temp_string_to_float():
     water_data = read_water_data()
-    water_temps = [for item in water_data if index / 4 True]
-    water_temps_float =
-    print(water_temps_float)
+    water_temps = [item[4] for item in water_data]
+    water_temps = ' '.join(water_temps)
+    for item in water_temps:
+        item = float(item)
+    water_temps_float = [item for item in water_temps]
+    print(water_temps)
+
+temp_string_to_float()
 
 
 def water_temperatures():
     water_data = read_water_data()
-    fahrenheit_temperature = [temperature * 32 + 32 for temperature in water_data if index[4::6]]
-    print(fahrenheit_temprature)
+    water_temps = [item[4] for item in water_data]
+    fahrenheit_temperature = [temp for temp in water_temps]
+    print(fahrenheit_temperature)
+
+
+water_temperatures()
 
 
 def water_dates_height_dictionairy():
     water_data = read_water_data()
+    dates = []
+    height = []
+    dates_height_dict = {}
 
