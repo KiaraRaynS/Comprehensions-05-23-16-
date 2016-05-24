@@ -47,11 +47,53 @@ def water_dates_height_dictionairy():
 
 
 def average_wave_by_day():
+    from statistics import mean
+    import datetime
     water_data = read_water_data()
-    dates_list = [item[5] for item in water_data]
+    dates = [item[5] for item in water_data]
+    dates_list = []
+    for date in dates:
+        date = date.replace('\n', '')
+        dates_list.append(date)
     heights_list = [item[1] for item in water_data]
     dates_heights = {date: heights_list[index] for index, date in enumerate(dates_list)}
-    print(dates_heights)
+    monday_heights = []
+    tuesday_heights = []
+    wednesday_heights = []
+    thursday_heights = []
+    friday_heights = []
+    saturday_heights = []
+    sunday_heights = []
+    for key, value in dates_heights.items():
+        key_day = datetime.datetime.strptime(key, "%Y-%m-%d")
+        key_day = key_day.isoweekday()
+        if key_day == 1:
+            monday_heights.append(float(value))
+        if key_day == 2:
+            tuesday_heights.append(float(value))
+        if key_day == 3:
+            wednesday_heights.append(float(value))
+        if key_day == 4:
+            thursday_heights.append(float(value))
+        if key_day == 5:
+            friday_heights.append(float(value))
+        if key_day == 6:
+            saturday_heights.append(float(value))
+        if key_day == 7:
+            sunday_heights.append(float(value))
+    a_mon = sum(monday_heights)/len(monday_heights)
+    a_tue = sum(tuesday_heights)/len(tuesday_heights)
+    a_wed = sum(wednesday_heights)/len(wednesday_heights)
+    a_thu = sum(thursday_heights)/len(thursday_heights)
+    a_fri = sum(friday_heights)/len(friday_heights)
+    a_sat = sum(saturday_heights)/len(saturday_heights)
+    a_sun = sum(sunday_heights)/len(sunday_heights)
+    averages_by_day = [a_mon, a_tue, a_wed, a_thu, a_fri, a_sat, a_sun]
+    weekday_names = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    last_dictionairy = {day: averages_by_day[index] for index, day in enumerate(weekday_names)}
+    print(averages_by_day)
+    print(weekday_names)
+    print(last_dictionairy)
 
 
 def nested_comprehension():
