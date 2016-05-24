@@ -47,29 +47,32 @@ def water_dates_height_dictionairy():
     print(dates_height_dict)
 
 
-class DayOfWeek(Enum):
-    Sunday = 0
-    Monday = 1
-    Tuesday = 2
-    Wednesday = 3
-    Thursday = 4
-    Friday = 5
-    Saturday = 6
-
-
 def get_day_of_week(year, month, day):
+    from enum import Enum
+    class DayOfWeek(Enum):
+        Sunday = 0
+        Monday = 1
+        Tuesday = 2
+        Wednesday = 3
+        Thursday = 4
+        Friday = 5
+        Saturday = 6
     month_table = [0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4]
     year -= 1 if month < 3 else 0
-    return DayOfWeek(int((year+year / 4 - year / 100 + year / 400 + month_table[month - 1] + day) % 7))
+    return DayOfWeek(int((year + year / 4 - year / 100 + year / 400 + month_table[month - 1] + day) % 7))
 
 
 def average_height():
     water_data = read_water_data()
     dates_list = [item[5] for item in water_data]
-    height_list = [item[1] for item in water_data]
-    days = [item[8:10] for item in dates_list]
-    zip(days, heights_list)
-for day in days:
+    heights_list = [item[1] for item in water_data]
+    day_list = [item[8:10] for item in dates_list]
+    days = []
+    for day in day_list:
+        day = int(day)
+        days.append(day)
+    days_heights = {day: heights_list[index] for index, day in enumerate(days)}
+    for day in days_heights.keys():
         monday_heights = []
         tuesday_heights = []
         wednesday_heights = []
@@ -81,6 +84,27 @@ for day in days:
         months = 8
         thanks_joel = get_day_of_week(years, months, day)
         if thanks_joel == DayOfWeek.Monday:
-            monday_heights.append
+            monday_heights.append(days)
+        if thanks_joel == DayOfWeek.Tuesday:
+            tuesday_heights.append(days)
+        if thanks_joel == DayOfWeek.Wednesday:
+            wednesday_heights.append(days)
+        if thanks_joel == DayOfWeek.Thursday:
+            thursday_heights.append(days_heights.values())
+        if thanks_joel == DayOfWeek.Friday:
+            friday_heights.append(days_heights.values())
+        if thanks_joel == DayOfWeek.Saturday:
+            saturday_heights.append(days_heights.values())
+        if thanks_joel == DayOfWeek.Sunday:
+            sunday_heights.append(days_heights.values())
+    print(sunday_heights)
 
+
+def nested_comprehension():
+    homework_dict = {'Gale': {'Homework 1': 88, 'Homework 2': 76},
+                     'Jordan': {'Homework 1': 92, 'Homework 2': 87},
+                     'Peyton': {'Homework 1': 84, 'Homework 2': 77},
+                     'River': {'Homework 1': 85, 'Homework 2': 91}
+                     }
+    homework_1_grades = for key in homework_dict.keys():
 
