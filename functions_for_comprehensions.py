@@ -66,6 +66,21 @@ def get_day_of_week(year, month, day):
 def average_height():
     water_data = read_water_data()
     dates_list = [item[5] for item in water_data]
-
+    height_list = [item[1] for item in water_data]
+    days = [item[8:10] for item in dates_list]
+    zip(days, heights_list)
+for day in days:
+        monday_heights = []
+        tuesday_heights = []
+        wednesday_heights = []
+        thursday_heights = []
+        friday_heights = []
+        saturday_heights = []
+        sunday_heights = []
+        years = 2015
+        months = 8
+        thanks_joel = get_day_of_week(years, months, day)
+        if thanks_joel == DayOfWeek.Monday:
+            monday_heights.append
 
 
